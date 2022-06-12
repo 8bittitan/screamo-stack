@@ -1,6 +1,6 @@
 # Remix Screamo Stack
 
-![The Remix Screamo Stack](https://user-images.githubusercontent.com/33367713/173217374-78e40846-edf3-457a-817c-c5c863942405.png)
+![The Remix Screamo Stack](https://user-images.githubusercontent.com/33367713/173238887-19215227-1027-44f3-bf2d-3ff1306bfa81.png)
 
 Learn more about [Remix Stacks](https://remix.run/stacks).
 
