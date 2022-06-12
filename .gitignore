@@ -1,13 +1,13 @@
 node_modules
 
-.cache
-.env
-.vercel
-.output
-
-/build/
+/build
 /public/build
-/api/index.js
-/api/index.js.map
+api
+.env
+
+/prisma/data.db
+/prisma/data.db-journal
+
+/app/styles/tailwind.css
 
 /postgres-data
