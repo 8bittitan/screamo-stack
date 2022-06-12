@@ -1,10 +1,8 @@
 import type { ActionFunction, MetaFunction } from '@remix-run/node';
-import { json } from '@remix-run/node';
 import { Form, Link, useActionData } from '@remix-run/react';
 import React from 'react';
 
 import { authenticator } from '~/utils/auth.server';
-import { validateEmail } from '~/utils/email.server';
 
 export const meta: MetaFunction = () => {
   return {
