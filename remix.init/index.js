@@ -1,3 +1,4 @@
+const { execSync } = require('child_process');
 const crypto = require('crypto');
 const fs = require('fs/promises');
 const path = require('path');
@@ -62,16 +63,21 @@ async function main({ rootDirectory }) {
       recursive: true,
     }),
     fs.rm(path.join(rootDirectory, '.github/PULL_REQUEST_TEMPLATE.md')),
+    fs.rm(path.join(rootDirectory, 'package-lock.json')),
   ]);
+
+  console.log('Running setup script');
+
+  execSync('npm run setup');
 
   console.log(
     `
-Setup is almost complete. Follow these steps to finish initialization:
-- Run setup (this updates the database):
-  npm run setup
-- You're now ready to rock and roll 🤘
-  npm run dev
-(remix.init directory can safely be removed)
+    Deploy script finished!
+
+    - You're now ready to rock and roll 🤘
+      npm run dev
+      
+    (remix.init directory can safely be removed)
     `.trim(),
   );
 }
