@@ -14,6 +14,7 @@
     "deploy:db": "prisma migrate deploy",
     "format": "prettier --write .",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
+    "postinstall": "remix setup node",
     "seed": "ts-node ./prisma/seed.ts",
     "test": "vitest",
     "typecheck": "tsc -b",
