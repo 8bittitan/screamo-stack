@@ -19,7 +19,7 @@ async function main({ rootDirectory }) {
   const ENV_PATH = path.join(rootDirectory, '.env');
   const PACKAGE_JSON_PATH = path.join(rootDirectory, 'package.json');
 
-  const REPLACER = 'punk-stack-template';
+  const REPLACER = 'screamo-stack-template';
 
   const DIR_NAME = path.basename(rootDirectory);
   const SUFFIX = getRandomString(2);

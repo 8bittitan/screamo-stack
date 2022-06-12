@@ -1,11 +1,11 @@
-# Remix Punk Stack
+# Remix Screamo Stack
 
-![The Remix Punk Stack](https://user-images.githubusercontent.com/33367713/173217374-78e40846-edf3-457a-817c-c5c863942405.png)
+![The Remix Screamo Stack](https://user-images.githubusercontent.com/33367713/173217374-78e40846-edf3-457a-817c-c5c863942405.png)
 
 Learn more about [Remix Stacks](https://remix.run/stacks).
 
 ```
-npx create-remix --template 8bittitan/punk-stack
+npx create-remix --template 8bittitan/screamo-stack
 ```
 
 ## What's in the stack
