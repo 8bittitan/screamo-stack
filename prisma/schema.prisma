@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String?
+  profile   Profile?
+  widgets   Widget[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([id, email])
+}
+
+model Profile {
+  id          String  @id @default(cuid())
+  name        String?
+  avatar      String?
+  displayName String?
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String  @unique
+
+  @@index(userId)
+}
+
+// This is just an example. A widget can be anything you need, a blog post, an invoice, a chat message, etc.
+model Widget {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+
+  @@index(userId)
+}
