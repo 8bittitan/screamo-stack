@@ -12,6 +12,7 @@
     "dev:css": "tailwindcss -o ./app/styles/tailwind.css -w",
     "dev:remix": "remix dev",
     "deploy:db": "prisma migrate deploy",
+    "docker": "docker-compose up -d",
     "format": "prettier --write .",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "postinstall": "remix setup node",

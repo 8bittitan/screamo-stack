@@ -1,3 +1,8 @@
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+pnpm-lock.yml
+
 node_modules
 
 .cache
@@ -9,3 +14,5 @@ node_modules
 /public/build
 /api/index.js
 /api/index.js.map
+
+/postgres-data
