@@ -1,6 +1,7 @@
 import type { ActionFunction, MetaFunction } from '@remix-run/node';
 import { Form, Link, useActionData } from '@remix-run/react';
 import React from 'react';
+import Input from '~/components/Input';
 
 import { authenticator } from '~/utils/auth.server';
 
@@ -58,59 +59,26 @@ export default function Login() {
 
       <div className="mx-auto w-full max-w-md px-8">
         <Form method="post" className="space-y-6" noValidate>
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email address
-            </label>
-            <div className="mt-1">
-              <input
-                ref={emailRef}
-                id="email"
-                required
-                autoFocus={true}
-                name="email"
-                type="email"
-                autoComplete="email"
-                aria-invalid={actionData?.errors?.email ? true : undefined}
-                aria-describedby="email-error"
-                className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
-              />
-              {actionData?.errors?.email && (
-                <div className="pt-1 text-red-700" id="email-error">
-                  {actionData.errors.email}
-                </div>
-              )}
-            </div>
-          </div>
+          <Input
+            label="Email address"
+            name="email"
+            id="email"
+            type="email"
+            required
+            ref={emailRef}
+            error={actionData?.errors?.email}
+            autoFocus={true}
+          />
 
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password
-            </label>
-            <div className="mt-1">
-              <input
-                id="password"
-                ref={passwordRef}
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                aria-invalid={actionData?.errors?.password ? true : undefined}
-                aria-describedby="password-error"
-                className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
-              />
-              {actionData?.errors?.password && (
-                <div className="pt-1 text-red-700" id="password-error">
-                  {actionData.errors.password}
-                </div>
-              )}
-            </div>
-          </div>
+          <Input
+            label="Password"
+            name="password"
+            id="password"
+            type="password"
+            required
+            ref={emailRef}
+            error={actionData?.errors?.password}
+          />
 
           <button
             type="submit"

@@ -1,6 +1,7 @@
 import type { ActionFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { Form, useActionData } from '@remix-run/react';
+import Input from '~/components/Input';
 
 import { createUser } from '~/models/user.server';
 import { authenticator } from '~/utils/auth.server';
@@ -44,32 +45,54 @@ export default function Join() {
   const actionData = useActionData<ActionData>() as ActionData;
 
   return (
-    <div>
-      <h2>Join Widgets today!</h2>
-      {actionData?.error && <p>{actionData.error}</p>}
-      <Form method="post">
-        <div>
-          <label htmlFor="email">Email</label>
-          <br />
-          <input type="email" name="email" id="email" required />
-        </div>
+    <div className="flex min-h-full flex-col justify-center">
+      <div className="mx-auto w-full max-w-md px-8 mt-8 mb-8">
+        <Form action="/auth/github">
+          <button
+            type="submit"
+            className="flex justify-center w-full py-4 bg-slate-700 hover:bg-slate-800 text-white rounded-md"
+          >
+            Sign in with Github
+          </button>
+        </Form>
+      </div>
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <br />
-          <input type="password" name="password" id="password" required />
-        </div>
+      <div className="mx-auto w-full max-w-md px-8 mb-8">
+        <hr className="border-black" />
+      </div>
 
-        <br />
+      <div className="mx-auto w-full max-w-md px-8">
+        <Form method="post" className="space-y-6" noValidate>
+          {actionData?.error && <p>{actionData.error}</p>}
+          <Input
+            label="Email address"
+            name="email"
+            id="email"
+            type="email"
+            required
+            // ref={emailRef}
+            // error={actionData?.errors?.email}
+            autoFocus={true}
+          />
 
-        <button type="submit">Join</button>
-      </Form>
+          <Input
+            label="Password"
+            name="password"
+            id="password"
+            type="password"
+            required
+            // ref={emailRef}
+            // error={actionData?.errors?.password}
+          />
 
-      <br />
-
-      <Form action="/auth/github">
-        <button type="submit">Join with Github</button>
-      </Form>
+          <button
+            type="submit"
+            className="w-full rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+          >
+            Join
+          </button>
+        </Form>
+      </div>
     </div>
   );
 }
