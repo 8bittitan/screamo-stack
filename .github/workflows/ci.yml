@@ -93,8 +93,9 @@ jobs:
           MYSQL_DATABASE: test
           MYSQL_USER: root
           MYSQL_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: password
         ports:
-          - 3306:3306
+          - 33306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     name: '👀 Integration Test'
     runs-on: ubuntu-latest
