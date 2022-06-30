@@ -10,6 +10,7 @@ on:
       - main
       - dev
   pull_request: {}
+
 permissions:
   actions: write
   contents: read
@@ -85,6 +86,15 @@ jobs:
         run: npm run test -- --coverage
 
   integration:
+    services:
+      mysql:
+        image: mysql:8.0.27
+        env:
+          MYSQL_DATABASE: test
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     name: '👀 Integration Test'
     runs-on: ubuntu-latest
     steps:
@@ -111,3 +121,4 @@ jobs:
         run: 'npm run test:integration'
         env:
           SESSION_SECRET: 'thisisatestsecret'
+          DATABASE_URL: 'mysql://root:password@localhost:3306/test'
