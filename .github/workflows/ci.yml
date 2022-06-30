@@ -109,3 +109,5 @@ jobs:
 
       - name: 👀 Run Integration Tests
         run: 'npm run test:integration'
+        env:
+          SESSION_SECRET: 'thisisatestsecret'
