@@ -7,7 +7,7 @@ type Props = {
 } & InputHTMLAttributes<HTMLInputElement>;
 
 const Input = forwardRef<HTMLInputElement, Props>(
-  ({ type, name, label, id, required, error, ...props }, ref) => (
+  ({ name, label, id, error, ...props }, ref) => (
     <div>
       <label
         htmlFor={id || name}
@@ -22,6 +22,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
           className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
           aria-invalid={error ? true : undefined}
           aria-describedby={`${name}-error`}
+          name={name}
           {...props}
         />
         {error && (
