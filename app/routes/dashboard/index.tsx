@@ -30,6 +30,7 @@ export default function DashboardIndex() {
   return (
     <div>
       <h2 className="text-xl font-bold mb-8">Widgets</h2>
+      {data.widgets.length < 1 && <p>You have no widgets yet!</p>}
       <ul>
         {data.widgets.map((widget) => (
           <li key={widget.id} className="mb-4">
