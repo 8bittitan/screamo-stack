@@ -1,12 +1,11 @@
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { Outlet } from '@remix-run/react';
-import { authenticator } from '~/utils/auth.server';
+
+import { requiresUser } from '~/http.server';
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const user = await authenticator.isAuthenticated(request, {
-    failureRedirect: '/login',
-  });
+  const user = await requiresUser(request);
 
   return json({ user });
 };
