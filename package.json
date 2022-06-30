@@ -15,7 +15,6 @@
     "format": "prettier --write .",
     "generate:css": "tailwindcss -o ./app/styles/tailwind.css",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
-    "postinstall": "remix setup node",
     "seed": "ts-node ./prisma/seed.ts",
     "setup": "prisma generate && prisma migrate dev",
     "start": "remix-serve build",
