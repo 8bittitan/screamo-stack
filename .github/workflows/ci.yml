@@ -86,17 +86,11 @@ jobs:
         run: npm run test -- --coverage
 
   integration:
-    services:
-      mysql:
-        image: mysql:8.0.27
-        env:
-          MYSQL_DATABASE: test
-          MYSQL_USER: root
-          MYSQL_PASSWORD: password
-          MYSQL_ROOT_PASSWORD: password
-        ports:
-          - 33306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    env:
+      DB_DATABASE: test
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_HOST: localhost
     name: '👀 Integration Test'
     runs-on: ubuntu-latest
     steps:
@@ -119,8 +113,14 @@ jobs:
       - name: 📥 Install Playwright
         run: npx playwright install --with-deps
 
+      - name: Setup MySQL
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+          mysql -e 'SHOW DATABASES;' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+
       - name: 👀 Run Integration Tests
         run: 'npm run test:integration'
         env:
           SESSION_SECRET: 'thisisatestsecret'
-          DATABASE_URL: 'mysql://root:password@mysql:3306/test'
+          DATABASE_URL: 'mysql://${{ env.DB_USER }}:${{ env.DB_PASSWORD }}@${{ env.DB_HOST }}:3306/${{ env.DB_DATABASE }}'
