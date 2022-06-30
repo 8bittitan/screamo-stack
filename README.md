@@ -20,6 +20,7 @@ npx create-remix --template 8bittitan/screamo-stack
 - Code formatting with [Prettier](https://prettier.io)
 - Linting with [ESLint](https://eslint.org)
 - Static Types with [TypeScript](https://typescriptlang.org)
+- [Storybook](https://storybook.js.org/) for component previewing
 - // TODO: Add Playwright for E2E tests
 
 Not a fan of bits of the stack? Fork it, change it, and use `npx create-remix --template your/repo`! Make it your own.
@@ -115,3 +116,9 @@ This project uses ESLint for linting. That is configured in `.eslintrc.js`.
 We use [Prettier](https://prettier.io/) for auto-formatting in this project. It's recommended to install an editor plugin (like the [VSCode Prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)) to get auto-formatting on save. There's also a `npm run format` script you can run to format all files in the project.
 
 This will also auto format per commit through a husky commit hook!
+
+### Storybook
+
+We use [Storybook](https://storybook.js.org/) for component previewing. To get started, just run `npm run storybook` to start Storybook in local.
+
+We also use the [a11y addon](https://storybook.js.org/addons/@storybook/addon-a11y/) for making sure that our components are accessible.

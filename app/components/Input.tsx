@@ -21,12 +21,12 @@ const Input = forwardRef<HTMLInputElement, Props>(
           id={id || name}
           className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
           aria-invalid={error ? true : undefined}
-          aria-describedby={`${name}-error`}
+          aria-describedby={error ? `${name}-error` : ''}
           name={name}
           {...props}
         />
         {error && (
-          <div className="pt-1 text-red-700" id="email-error">
+          <div className="pt-1 text-red-700" id={`${name}-error`}>
             {error}
           </div>
         )}
