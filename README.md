@@ -21,7 +21,7 @@ npx create-remix --template 8bittitan/screamo-stack
 - Linting with [ESLint](https://eslint.org)
 - Static Types with [TypeScript](https://typescriptlang.org)
 - [Storybook](https://storybook.js.org/) for component previewing
-- // TODO: Add Playwright for E2E tests
+- Reliable integration tests with [Playwright](https://playwright.dev/)
 
 Not a fan of bits of the stack? Fork it, change it, and use `npx create-remix --template your/repo`! Make it your own.
 
@@ -102,6 +102,10 @@ Now that our code is pushed, we can start setting up Vercel. We need to first cr
 ### Vitest
 
 For lower level tests of utilities and individual components, we use `vitest`. We have DOM-specific assertion helpers via [`@testing-library/jest-dom`](https://testing-library.com/jest-dom).
+
+### Playwright
+
+For integration tests, we use [Playwright](https://playwright.dev/) and specifically tets on Chrome and FireFox.
 
 ### Type Checking
 

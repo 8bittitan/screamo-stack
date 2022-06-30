@@ -17,7 +17,10 @@ export default function Index() {
               <div className="absolute inset-0 bg-red-600 mix-blend-multiply" />
             </div>
             <div className="lg:pb-18 relative px-4 pt-16 pb-8 sm:px-6 sm:pt-24 sm:pb-14 lg:px-8 lg:pt-32">
-              <h1 className="text-center text-6xl font-extrabold tracking-tight sm:text-8xl">
+              <h1
+                className="text-center text-6xl font-extrabold tracking-tight sm:text-8xl"
+                data-test="home__title"
+              >
                 <span className="block uppercase text-red-500 drop-shadow-md">
                   Screamo Stack
                 </span>
@@ -31,6 +34,7 @@ export default function Index() {
                   <Link
                     to="/join"
                     className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-red-700 shadow-sm hover:bg-blue-50 sm:px-8"
+                    data-test="home__join"
                   >
                     Sign up
                   </Link>

@@ -1,4 +1,4 @@
-import { validateEmail } from './email.server';
+import { validateEmail } from '~/utils/email.server';
 
 describe('validateEmail', () => {
   it('should return false for not valid email', () => {
