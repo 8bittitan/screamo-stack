@@ -17,16 +17,16 @@ const Nav: FC<Props> = ({ user }) => {
   return (
     <header className="bg-gray-100">
       <Container classes="flex h-16 items-center">
-        <Link to={user ? '/dashboard' : '/'}>
-          <Logo />
-        </Link>
+        {/* <Link to={user ? '/dashboard' : '/'}> */}
+        <Logo />
+        {/* </Link> */}
 
         <nav className="ml-auto">
           {user ? (
             <div className="relative flex items-center">
-              <Link to="/dashboard" className="mr-4">
+              {/* <Link to="/dashboard" className="mr-4">
                 dashboard
-              </Link>
+              </Link> */}
               <button
                 type="button"
                 className="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
