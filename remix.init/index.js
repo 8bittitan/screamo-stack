@@ -33,9 +33,8 @@ async function main({ rootDirectory }) {
   const REPLACER = 'screamo-stack-template';
 
   const DIR_NAME = path.basename(rootDirectory);
-  const SUFFIX = getRandomString(2);
 
-  const APP_NAME = (DIR_NAME + '-' + SUFFIX)
+  const APP_NAME = DIR_NAME
     // get rid of anything that's not allowed in an app name
     .replace(/[^a-zA-Z0-9-_]/g, '-');
 
@@ -46,12 +45,14 @@ async function main({ rootDirectory }) {
     fs.readFile(EXAMPLE_CI_CONFIG_PATH, 'utf-8'),
   ]);
 
+  const DATABASE_URL = `mysql://root:@localhost:3306/${APP_NAME}_dev`;
+
   const newEnv = env
     .replace(/^SESSION_SECRET=.*$/m, `SESSION_SECRET="${getRandomString(16)}"`)
-    .replace(/^{APP_NAME}$/m, APP_NAME);
+    .replace(/^DATABASE_URL=.*$/m, `DATABASE_URL="${DATABASE_URL}"`);
 
   const newCiConfig = ciConfig.replace(
-    /^{SESSION_SECRET}$/m,
+    /^{ SESSION_SECRET }$/m,
     `${getRandomString(16)}`,
   );
 
