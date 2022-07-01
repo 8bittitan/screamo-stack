@@ -33,9 +33,6 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
-          cache: 'npm'
 
       - name: 🔬 Lint
         run: npm run lint
@@ -57,9 +54,6 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
-          cache: 'npm'
 
       - name: 🔎 Type check
         run: npm run typecheck --if-present
@@ -81,9 +75,6 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
-          cache: 'npm'
 
       - name: ⚡ Run vitest
         run: npm run test -- --coverage
@@ -110,9 +101,6 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
-          cache: 'npm'
 
       - name: 📥 Install Playwright
         run: npx playwright install --with-deps
@@ -126,5 +114,5 @@ jobs:
       - name: 👀 Run Integration Tests
         run: 'npm run test:integration'
         env:
-          SESSION_SECRET: { SESSION_SECRET }
+          SESSION_SECRET: 'thisisasecret'
           DATABASE_URL: 'mysql://${{ env.DB_USER }}:${{ env.DB_PASSWORD }}@${{ env.DB_HOST }}:3306/${{ env.DB_DATABASE }}'
