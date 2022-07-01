@@ -18,6 +18,17 @@ async function main({ rootDirectory }) {
   const EXAMPLE_ENV_PATH = path.join(rootDirectory, '.env.example');
   const ENV_PATH = path.join(rootDirectory, '.env');
   const PACKAGE_JSON_PATH = path.join(rootDirectory, 'package.json');
+  const EXAMPLE_CI_CONFIG_PATH = path.join(
+    rootDirectory,
+    'remix.init',
+    'ci.yml',
+  );
+  const CI_CONFIG_PATH = path.join(
+    rootDirectory,
+    '.github',
+    'workflows',
+    'ci.yml',
+  );
 
   const REPLACER = 'screamo-stack-template';
 
@@ -28,15 +39,20 @@ async function main({ rootDirectory }) {
     // get rid of anything that's not allowed in an app name
     .replace(/[^a-zA-Z0-9-_]/g, '-');
 
-  const [readme, env, packageJson] = await Promise.all([
+  const [readme, env, packageJson, ciConfig] = await Promise.all([
     fs.readFile(README_PATH, 'utf-8'),
     fs.readFile(EXAMPLE_ENV_PATH, 'utf-8'),
     fs.readFile(PACKAGE_JSON_PATH, 'utf-8'),
+    fs.readFile(EXAMPLE_CI_CONFIG_PATH, 'utf-8'),
   ]);
 
-  const newEnv = env.replace(
-    /^SESSION_SECRET=.*$/m,
-    `SESSION_SECRET="${getRandomString(16)}"`,
+  const newEnv = env
+    .replace(/^SESSION_SECRET=.*$/m, `SESSION_SECRET="${getRandomString(16)}"`)
+    .replace(/^{APP_NAME}$/m, APP_NAME);
+
+  const newCiConfig = ciConfig.replace(
+    /^{SESSION_SECRET}$/m,
+    `${getRandomString(16)}`,
   );
 
   const newReadme = readme.replace(
@@ -55,6 +71,7 @@ async function main({ rootDirectory }) {
     fs.writeFile(README_PATH, newReadme),
     fs.writeFile(ENV_PATH, newEnv),
     fs.writeFile(PACKAGE_JSON_PATH, newPackageJson),
+    fs.writeFile(CI_CONFIG_PATH, newCiConfig),
     fs.copyFile(
       path.join(rootDirectory, 'remix.init', 'gitignore'),
       path.join(rootDirectory, '.gitignore'),
@@ -63,7 +80,6 @@ async function main({ rootDirectory }) {
       recursive: true,
     }),
     fs.rm(path.join(rootDirectory, '.github/PULL_REQUEST_TEMPLATE.md')),
-    fs.rm(path.join(rootDirectory, 'package-lock.json')),
   ]);
 
   console.log('Running setup script');
