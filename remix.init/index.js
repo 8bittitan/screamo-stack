@@ -84,5 +84,4 @@ async function main({ rootDirectory }) {
   );
 }
 
-// module.exports = main;
-main({ rootDirectory: path.join(process.cwd(), '..') });
+module.exports = main;
