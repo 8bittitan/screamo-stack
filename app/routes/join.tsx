@@ -29,7 +29,7 @@ export const action: ActionFunction = async ({ request, context }) => {
     const res = await authenticator.authenticate('credentials', req, {
       context,
       throwOnError: true,
-      successRedirect: '/sites',
+      successRedirect: '/dashboard',
     });
 
     return res;
