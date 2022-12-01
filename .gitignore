@@ -16,3 +16,5 @@ api
 /app/styles/tailwind.css
 
 /postgres-data
+
+/coverage
